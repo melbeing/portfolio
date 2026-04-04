@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mel Daniels — Product Designer</title>
+  <meta name="description" content="Multi-discipline designer and illustrator with a strong focus on UI/UX, interaction, and visual design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;1,14..32,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Prevent flash of wrong theme
+    (function() {
+      const t = localStorage.getItem('ms-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Mel Daniels</a>
+      <div class="nav__right">
+        <ul class="nav__links">
+          <li><a href="index.html"   class="nav__link active">Design</a></li>
+          <li><a href="crafts.html"  class="nav__link">Crafts</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Toggle light/dark mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64"  y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <main class="main">
+      <div class="container">
+
+        <!-- ─── HERO ─── -->
+        <section class="hero">
+          <p class="hero__eyebrow reveal">UI/UX &amp; Product Design</p>
+          <h1 class="hero__name reveal reveal-d1">
+            Mel<br><em>Daniels</em>
+          </h1>
+          <p class="hero__bio reveal reveal-d2">
+            I'm a multi-discipline designer and illustrator with a strong focus on UI/UX,
+            interaction, and visual design. I enjoy building things in service of people,
+            continuously learning, and improving my craft.
+          </p>
+          <div class="hero__badges reveal reveal-d3">
+            <span class="hero__badge hero__badge--green">Open to freelance</span>
+            <span class="hero__badge hero__badge--pink">Taking commissions</span>
+          </div>
+        </section>
+
+        <!-- ─── SELECTED WORK ─── -->
+        <section class="work-section" id="work">
+          <div class="section-header reveal">
+            <span class="section-label">Selected Work</span>
+            <span class="section-aux">6 projects</span>
+          </div>
+
+          <a href="work/flow-wallet.html" class="work-item reveal reveal-d1">
+            <img class="work-item__thumb" src="images/flow/slide-5.png" alt="Flow Wallet">
+            <div class="work-item__left">
+              <span class="work-item__company">Flow Wallet
+                <svg class="work-item__lock" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     aria-label="Password protected">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2026</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">Blockchain</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Senior Product Designer</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="work/connected-home.html" class="work-item reveal reveal-d2">
+            <img class="work-item__thumb" src="images/connected-home/img-1.svg" alt="Connected Home">
+            <div class="work-item__left">
+              <span class="work-item__company">Connected Home
+                <svg class="work-item__lock" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     aria-label="Password protected">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2026</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">IoT</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Senior Product Designer</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="work/cabin-city.html" class="work-item reveal reveal-d3">
+            <img class="work-item__thumb" src="images/cabin/img-1.png" alt="Cabin.City">
+            <div class="work-item__left">
+              <span class="work-item__company">Cabin.City</span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2023</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">Web3</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Creative Director</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="work/sleepme.html" class="work-item reveal reveal-d4">
+            <img class="work-item__thumb" src="images/sleepme/cover.png" alt="Sleepme">
+            <div class="work-item__left">
+              <span class="work-item__company">Sleepme</span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2021 — 2022</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">Health Tech</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Senior Product Designer</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="work/skiptown.html" class="work-item reveal reveal-d5">
+            <img class="work-item__thumb" src="images/skiptown/hero.webp" alt="Skiptown">
+            <div class="work-item__left">
+              <span class="work-item__company">Skiptown</span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2020 — 2021</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">Consumer App</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Senior Product Designer</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="work/passport.html" class="work-item reveal reveal-d5" style="transition-delay:0.48s">
+            <img class="work-item__thumb" src="images/passport/hero.webp" alt="Passport">
+            <div class="work-item__left">
+              <span class="work-item__company">Passport</span>
+              <div class="work-item__meta">
+                <span class="work-item__date">2018 — 2020</span>
+                <span class="work-item__tag">Product Design</span>
+                <span class="work-item__tag">Enterprise</span>
+              </div>
+            </div>
+            <div class="work-item__right">
+              <span>Senior Product Designer</span>
+              <svg class="work-item__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </section>
+
+        <!-- ─── TIMELINE ─── -->
+        <section class="timeline-section" id="timeline">
+          <div class="section-header reveal">
+            <span class="section-label">Timeline</span>
+          </div>
+
+          <div class="timeline-group reveal reveal-d1">
+            <p class="timeline-group-label">Work Experience</p>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2024 — 2026</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Senior Product Designer</p>
+                <p class="timeline-company">Flow</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2022 — Now</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Creative Director</p>
+                <p class="timeline-company">Alkime</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2021 — 2022</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Senior Product Designer</p>
+                <p class="timeline-company">Sleepme</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2020 — 2021</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Senior Product Designer</p>
+                <p class="timeline-company">Skiptown</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2018 — 2020</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Senior Product Designer</p>
+                <p class="timeline-company">Passport</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2013 — 2018</span>
+              <div class="timeline-content">
+                <p class="timeline-role">Lead Designer</p>
+                <p class="timeline-company">Skookum</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-group reveal reveal-d2">
+            <p class="timeline-group-label">Education</p>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2021</span>
+              <div class="timeline-content">
+                <p class="timeline-role">d.MBA — Business for Designers</p>
+                <p class="timeline-company">Moves the Needle</p>
+              </div>
+            </div>
+
+            <div class="timeline-entry">
+              <span class="timeline-date">2009 — 2013</span>
+              <div class="timeline-content">
+                <p class="timeline-role">BFA, Graphic Design</p>
+                <p class="timeline-company">Appalachian State University</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── CONTACT ─── -->
+        <section class="contact-section" id="contact">
+          <div class="section-header reveal">
+            <span class="section-label">Contact</span>
+          </div>
+          <div class="contact-links reveal reveal-d1">
+            <a href="mailto:melshields.art@gmail.com" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email
+            </a>
+            <a href="https://twitter.com/mel_being" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+              </svg>
+              Twitter
+            </a>
+            <a href="https://www.instagram.com/heymeldaniels/" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              Instagram
+            </a>
+            <a href="https://dribbble.com/melshields_art" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+              </svg>
+              Dribbble
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <span class="footer__copy">© 2026 Mel Daniels</span>
+        <span class="footer__copy">Made with <span class="footer__pink">♡</span></span>
+      </div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleepme — Mel Daniels</title>
+  <meta name="description" content="Making sleep easier, more accessible, and a positive part of people's health — product design at Sleepme.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;1,14..32,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function() {
+      const t = localStorage.getItem('ms-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Mel Daniels</a>
+      <div class="nav__right">
+        <ul class="nav__links">
+          <li><a href="../index.html"   class="nav__link active">Design</a></li>
+          <li><a href="../crafts.html"  class="nav__link">Crafts</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Toggle light/dark mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64"  y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="main">
+      <div class="container">
+
+        <a href="../index.html#work" class="back-link reveal">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All projects
+        </a>
+
+        <!-- ─── HEADER ─── -->
+        <header class="cs-header">
+          <p class="cs-eyebrow reveal">Product Design · Health Tech · 2021 — 2022</p>
+          <h1 class="cs-title reveal reveal-d1">
+            Redefining<br><em>sleep</em>
+          </h1>
+          <div class="cs-meta reveal reveal-d2">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">Senior Product Designer</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Timeline</span>
+              <span class="cs-meta-value">2021 — 2022</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Platforms</span>
+              <span class="cs-meta-value">iOS, Android, Web</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Type</span>
+              <span class="cs-meta-value">Health Tech, Consumer</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- ─── HERO IMAGE ─── -->
+        <div class="cs-hero-img reveal">
+          <img
+            src="../images/sleepme/cover.png"
+            alt="Sleepme app screens"
+            loading="eager">
+        </div>
+
+        <!-- ─── OVERVIEW ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Overview</p>
+          <h2 class="cs-section-title">Making sleep a positive part of people's health</h2>
+          <div class="cs-body">
+            <p>Sleepme is on a mission to make sleep easier, more accessible, and a positive part of people's future health. When I joined the team, Sleepme had already developed various IoT-based products for the bedroom and was starting to build a SaaS platform to improve the health and well-being of their consumers.</p>
+            <p>I led my own design efforts and collaborated closely with the product and development teams throughout the course of each project. Together, we launched the rebranding of the Sleepme website, shaped the visual brand and design system, and designed many of the core features within the mobile app around sleep tracking and Hiber-AI.</p>
+          </div>
+        </section>
+
+        <!-- ─── PROCESS ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Process</p>
+          <h2 class="cs-section-title">Research-led, shipped in small batches</h2>
+          <div class="cs-body">
+            <p>Much of the work we developed was based on new experiences, so our focus was to launch small improvements quickly and iterate on them using the insights we gained from qualitative and quantitative data. The best way to design and build a product people want is by stepping away from the desk and getting out to talk to your customers.</p>
+            <p>Activities like interviews and surveys helped us surface potential opportunities by better understanding our users' pain points, needs, and desires. After talking to customers, we found three target groups: <em>performance and recovery</em>, <em>sleep-deprived individuals</em>, and <em>wellness seekers</em>. The insights gained by conducting frequent interviews throughout our discovery work shaped our experience to better serve our customers' needs and shine a light on our own biases and assumptions.</p>
+            <p>We found that many people felt powerless when they didn't get enough sleep, and the more energy they put into trying tended to work against them. Everyone's sleep journey is unique — what works for one may not work for another. By putting the sleeper first, we found that providing quick wins early and offering a supportive experience with ongoing tools and resources could help empower them on their way.</p>
+            <p>Our bodies are programmed to experience a slight dip in core temperature in the evening — a signal to our brain that it's time for bed. These cooler temperatures are also more conducive to slow-wave sleep and help prevent restlessness. Customers could control their bed temperature using our thermoregulation mattress pad and the mobile app to schedule manual temperature programs that would run through the night.</p>
+            <p>Next, we launched the sleep tracker to help customers monitor their sleep and make adjustments as they uncovered patterns in their data. The discoveries we made from mobile app analytics and customer interviews showed that not everyone looked at raw data daily, but desired views of trends over time and actionable steps based on their data.</p>
+            <p>We introduced <strong>Hiber-AI</strong>, a virtual sleep coach, to take the ambiguity and work off our customers' hands. Setting manual programs can be a heavy cognitive load — too demanding at times when they have to get out of bed or don't get to sleep on time. With Hiber-AI, we can now intelligently reference sleeper data to adjust bed temperatures in real-time without asking people to be on their phones in the middle of the night.</p>
+          </div>
+        </section>
+
+        <!-- ─── PROCESS IMAGES ─── -->
+        <div class="cs-img-grid cs-img-grid--2 reveal">
+          <img src="../images/sleepme/dark.gif"     alt="Sleepme dark mode app animation" class="natural" loading="lazy">
+          <img src="../images/sleepme/asset-1.png" alt="Sleepme app screen" loading="lazy">
+          <img src="../images/sleepme/asset-2.png" alt="Sleepme app screen" loading="lazy">
+          <img src="../images/sleepme/asset-3.png" alt="Sleepme app screen" loading="lazy">
+        </div>
+
+        <!-- ─── OUTCOMES ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Outcomes</p>
+          <h2 class="cs-section-title">Iterating toward a better night's sleep</h2>
+          <div class="cs-body">
+            <p>We learned a tremendous amount by launching these features in small batches and iterating. The team is excited to use the tools and processes we set up throughout these projects — like Mixpanel for aggregated analytics, in-app feedback, and frequent customer interviews — to discover further opportunities for continued improvements to the experience.</p>
+            <p>"Design is the application of intention, and you are only as intentional as you are informed." When we conduct research and talk to customers, I'm a huge proponent of sharing this information with the team in an easily accessible location so that it can continue to be helpful for others. If my efforts can help others be better and more efficient at their jobs, then I feel like it's been time well spent.</p>
+            <p>Much of this case study lays out the broader context of the mobile app experience, but if you'd like to dig deeper into the product and design strategy, I'd be happy to chat.</p>
+          </div>
+        </section>
+
+        <!-- ─── PROJECT NAV ─── -->
+        <nav class="proj-nav" aria-label="Project navigation">
+          <a href="cabin-city.html" class="proj-nav-link">
+            <span class="proj-nav-label">← Previous Project</span>
+            <span class="proj-nav-name">Cabin.City</span>
+          </a>
+          <a href="skiptown.html" class="proj-nav-link proj-nav-link--next">
+            <span class="proj-nav-label">Next Project →</span>
+            <span class="proj-nav-name">Skiptown</span>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <span class="footer__copy">© 2026 Mel Daniels</span>
+        <span class="footer__copy">Made with <span class="footer__pink">♡</span></span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

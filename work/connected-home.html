@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connected Home — Mel Daniels</title>
+  <meta name="description" content="Designing a privacy-first, edge-orchestrated smart living platform for Flow's Connected Experience program.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;1,14..32,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ─── PASSWORD GATE ─── */
+    .page-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(20, 24, 21, 0.6);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 1;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .page-gate.unlocked {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .gate__card {
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    .gate__lock {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--pine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .gate__lock svg {
+      width: 20px;
+      height: 20px;
+      stroke: rgba(255,255,255,0.85);
+    }
+
+    .gate__title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .gate__input-wrap {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .gate__input {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+      letter-spacing: 0.04em;
+      transition: border-color 0.18s ease;
+    }
+    .gate__input:focus {
+      border-color: var(--pine);
+    }
+    .gate__input.error {
+      border-color: #C0544A;
+      animation: gate-shake 0.35s ease;
+    }
+    @keyframes gate-shake {
+      0%, 100% { transform: translateX(0); }
+      25%       { transform: translateX(-6px); }
+      75%       { transform: translateX(6px); }
+    }
+
+    .gate__error {
+      font-size: 12px;
+      color: #C0544A;
+      margin-bottom: 8px;
+      min-height: 16px;
+      transition: opacity 0.2s ease;
+    }
+
+    .gate__btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: none;
+      background: var(--pine);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .gate__btn:hover  { opacity: 0.88; }
+    .gate__btn:active { transform: scale(0.98); }
+
+    .gate__back-btn {
+      display: block;
+      margin-top: 8px;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .gate__back-btn:hover {
+      background: var(--bg-secondary);
+      color: var(--text);
+    }
+
+    /* Blur the page content while locked */
+    body.gated .page-wrapper,
+    body.gated .nav {
+      filter: blur(6px);
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+  <script>
+    (function() {
+      const t = localStorage.getItem('ms-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body class="gated">
+
+  <!-- ─── PASSWORD GATE ─── -->
+  <div class="page-gate" id="pageGate" role="dialog" aria-modal="true" aria-label="Password protected content">
+    <div class="gate__card">
+      <div class="gate__lock">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <p class="gate__title">Enter the password to view</p>
+      <div class="gate__input-wrap">
+        <input
+          class="gate__input"
+          id="gateInput"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          aria-label="Password">
+      </div>
+      <p class="gate__error" id="gateError" aria-live="polite"></p>
+      <button class="gate__btn" id="gateBtn">View Case Study</button>
+      <a href="../index.html" class="gate__back-btn">Go Back</a>
+    </div>
+  </div>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Mel Daniels</a>
+      <div class="nav__right">
+        <ul class="nav__links">
+          <li><a href="../index.html"  class="nav__link active">Design</a></li>
+          <li><a href="../crafts.html" class="nav__link">Crafts</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Toggle light/dark mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64"  y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="main">
+      <div class="container">
+
+        <a href="../index.html#work" class="back-link reveal">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All projects
+        </a>
+
+        <!-- ─── HEADER ─── -->
+        <header class="cs-header">
+          <p class="cs-eyebrow reveal">Product Design · iOS, Android · 2026</p>
+          <h1 class="cs-title reveal reveal-d1">
+            A smart home that stays<br><em>out of the way</em>
+          </h1>
+          <div class="cs-meta reveal reveal-d2">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">Senior Product Designer</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Timeline</span>
+              <span class="cs-meta-value">2026</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Platform</span>
+              <span class="cs-meta-value">iOS, Android</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Type</span>
+              <span class="cs-meta-value">IoT, Consumer</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- ─── HERO IMAGE ─── -->
+        <div class="cs-hero-img reveal">
+          <img
+            src="../images/connected-home/img-1.svg"
+            alt="Connected Home — device control, Vibes, and lighting screens"
+            loading="eager">
+        </div>
+
+        <!-- ─── OVERVIEW ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Overview</p>
+          <h2 class="cs-section-title">One app. Every device. No cloud required.</h2>
+          <div class="cs-body">
+            <p>Pod Bee is an initiative within Flow's Connected Experience (C-XP) program — a privacy-first, edge-orchestrated smart living platform built for residential properties. The core hardware is the Flow Box: a custom encrypted edge device that orchestrates all smart devices in an apartment entirely on-premise, invisible to residents but responsive to their every need.</p>
+            <p>The design challenge was significant: residents shouldn't need to think about IoT standards, device pairing, or privacy architecture. They should simply walk into a room and have their environment respond. That meant hiding the complexity of Matter, Zigbee, and Thread integrations behind an interface that felt as simple as adjusting a thermostat.</p>
+            <p>The target: zero to fully connected in under two minutes, with sub-second command latency across all devices.</p>
+          </div>
+        </section>
+
+        <!-- ─── HERO IMAGE 2: Architecture ─── -->
+        <div class="cs-img-grid cs-img-grid--1 reveal">
+          <img src="../images/connected-home/img-2.svg" alt="Connected Home system architecture — Flow Box orchestrating all devices on-premise" loading="lazy">
+        </div>
+
+        <!-- ─── PROBLEM ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Problem</p>
+          <h2 class="cs-section-title">Every device, a different app</h2>
+          <div class="cs-body">
+            <p>Residents at Flow properties were managing their living environment across a fragmented collection of disconnected apps and physical switches — one for lights, another for shades, another for the thermostat. There was no unified control surface, no way to set a mood across devices at once, and no concept of a "home" state.</p>
+            <p>Behind the scenes, the technical complexity was equally fragmented. Multiple IoT standards (Matter, Zigbee, Thread) needed to interoperate securely without exposing resident data to the cloud. Any solution had to be scalable from a single demo unit to 50+ apartments without requiring bespoke configuration for each one.</p>
+          </div>
+          <div class="process-grid">
+            <div class="process-card">
+              <p class="process-card__num">01</p>
+              <p class="process-card__title">Fragmented Control</p>
+              <p class="process-card__desc">Residents used disconnected apps or physical switches for each device type, creating a disjointed and frustrating experience with no unified home view.</p>
+            </div>
+            <div class="process-card">
+              <p class="process-card__num">02</p>
+              <p class="process-card__title">Privacy & Security</p>
+              <p class="process-card__desc">Device control and data aggregation needed to stay fully private — strong peer-to-peer authentication with no cloud dependency for sensitive operations.</p>
+            </div>
+            <div class="process-card">
+              <p class="process-card__num">03</p>
+              <p class="process-card__title">Scale</p>
+              <p class="process-card__desc">A single demo unit needed to serve as a repeatable blueprint — provisioning and configuration had to be documented for a 50+ unit commercial rollout.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── ONBOARDING IMAGES ─── -->
+        <div class="cs-img-grid cs-img-grid--1 reveal">
+          <img src="../images/connected-home/img-3.svg" alt="Connected Home onboarding — device discovery and setup flow" loading="lazy">
+        </div>
+
+        <!-- ─── SOLUTION ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Solution</p>
+          <h2 class="cs-section-title">Vibes: scene-based living</h2>
+          <div class="cs-body">
+            <p>The central design concept was Vibes — a set of curated scenes (Focus, Relax, Morning, Party, Cinema) that coordinate every device in an apartment simultaneously. Activating a Vibe adjusts lighting levels and color temperature, opens or closes shades, sets the thermostat, and queues appropriate audio — all with a single tap and sub-second execution.</p>
+            <p>Beneath Vibes, manual device control gives residents granular access when they need it. The interface was modeled after the simplicity of Venmo and Apple's Home app — familiar patterns that required no onboarding. The Flow Box itself is entirely invisible: it runs a containerized API on a Raspberry Pi CM5, communicates via mTLS with private keys that never leave the user's device, and connects remotely through outbound-only tunneling that requires no inbound firewall configuration.</p>
+            <p>Onboarding was designed to get residents from zero to fully connected in under two minutes — automatic device discovery, one-tap pairing, and instant Vibe availability from the moment setup completes.</p>
+          </div>
+        </section>
+
+        <!-- ─── RESULTS ─── -->
+        <div class="cs-img-grid cs-img-grid--1 reveal">
+          <img src="../images/connected-home/img-4.svg" alt="Pod Bee demo readiness — status dashboard and security model" loading="lazy">
+        </div>
+
+        <!-- ─── OUTCOME ─── -->
+        <section class="cs-section reveal">
+          <p class="cs-section-label">Outcome</p>
+          <h2 class="cs-section-title">Demo-ready. Blueprint for scale.</h2>
+          <div class="cs-body">
+            <p>By April 2026, the Flow Box for Unit 4811 at Flow Brickell was fully assembled and connected. The Vibes engine launched with five foundational scenes, all hardware was paired and online, and the security model — mTLS authentication with private keys remaining on-device, zero cloud dependency — was fully validated.</p>
+            <p>The provisioning and configuration process was documented as a repeatable blueprint for the planned 50+ unit post-demo rollout, with an expanded QA team, improved CI/CD pipelines, and AI-assisted documentation tooling in place. The April 28 stakeholder demo set the criteria: end-to-end device control, proactive Vibe triggering, and sub-second command latency — all met.</p>
+          </div>
+        </section>
+
+        <!-- ─── PROJECT NAV ─── -->
+        <nav class="proj-nav" aria-label="Project navigation">
+          <a href="flow-wallet.html" class="proj-nav-link proj-nav-link--prev">
+            <span class="proj-nav-label">← Previous Project</span>
+            <span class="proj-nav-name">Flow Wallet</span>
+          </a>
+          <a href="cabin-city.html" class="proj-nav-link proj-nav-link--next">
+            <span class="proj-nav-label">Next Project →</span>
+            <span class="proj-nav-name">Cabin.City</span>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <span class="footer__copy">© 2026 Mel Daniels</span>
+        <span class="footer__copy">Made with <span class="footer__pink">♡</span></span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // ─── PASSWORD GATE ────────────────────────────────
+    (function() {
+      const gate    = document.getElementById('pageGate');
+      const input   = document.getElementById('gateInput');
+      const btn     = document.getElementById('gateBtn');
+      const errEl   = document.getElementById('gateError');
+      const PASS    = 'pinegreen';
+      const SESSION_KEY = 'connected-home-unlocked';
+
+      function unlock() {
+        gate.classList.add('unlocked');
+        document.body.classList.remove('gated');
+        sessionStorage.setItem(SESSION_KEY, '1');
+        setTimeout(() => { gate.remove(); }, 520);
+      }
+
+      function attempt() {
+        if (input.value === PASS) {
+          unlock();
+        } else {
+          errEl.textContent = 'Incorrect password. Try again.';
+          input.classList.add('error');
+          input.addEventListener('animationend', () => {
+            input.classList.remove('error');
+          }, { once: true });
+          input.select();
+        }
+      }
+
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        unlock();
+        return;
+      }
+
+      btn.addEventListener('click', attempt);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+      input.focus();
+    })();
+  </script>
+</body>
+</html>
