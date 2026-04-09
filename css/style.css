@@ -1080,15 +1080,15 @@ button {
 .timeline-content {}
 
 .timeline-role {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.timeline-company {
   font-size: 14px;
   font-weight: 400;
   color: var(--text);
   margin-bottom: 2px;
-}
-
-.timeline-company {
-  font-size: 13px;
-  color: var(--text-secondary);
 }
 
 /* ---------------------------------------------------
