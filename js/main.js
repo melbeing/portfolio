@@ -151,35 +151,62 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImgLightbox(); });
   }
 
-  // ─── CRAFTS LIGHTBOX ─────────────────────────────
-  const lightbox = document.getElementById('lightbox');
-  if (lightbox) {
-    const craftItems = document.querySelectorAll('.craft-item');
-    const preview    = document.getElementById('lightboxPreview');
-    const titleEl    = document.getElementById('lightboxTitle');
-    const descEl     = document.getElementById('lightboxDesc');
-    const closeBtn   = lightbox.querySelector('.lightbox__close');
+  // ─── CRAFTS GALLERY (scrollable full-screen view) ──
+  const gallery = document.getElementById('gallery');
+  if (gallery) {
+    const craftItems   = Array.from(document.querySelectorAll('.craft-item'));
+    const scrollEl     = document.getElementById('galleryScroll');
+    const closeBtn     = gallery.querySelector('.gallery__close');
 
-    craftItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const bg = item.querySelector('.craft-bg');
-        preview.innerHTML = '';
-        if (bg) preview.appendChild(bg.cloneNode(true));
-        titleEl.textContent = item.dataset.title || '';
-        descEl.textContent  = item.dataset.description || '';
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
+    // Build gallery once from the grid so image order matches
+    craftItems.forEach((item, i) => {
+      const srcImg = item.querySelector('img');
+      if (!srcImg) return;
+      const img = document.createElement('img');
+      img.className = 'gallery__img';
+      img.src = srcImg.getAttribute('src');
+      img.alt = srcImg.getAttribute('alt') || '';
+      img.loading = 'lazy';
+      img.dataset.index = i;
+      scrollEl.appendChild(img);
     });
 
-    const closeLightbox = () => {
-      lightbox.classList.remove('open');
+    const openGallery = (index) => {
+      gallery.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Jump to the clicked image without animating (so it feels instant)
+      const target = scrollEl.querySelector(`.gallery__img[data-index="${index}"]`);
+      if (target) {
+        // Wait a tick so layout is ready after showing
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: 'auto', block: 'center' });
+        });
+      } else {
+        scrollEl.scrollTop = 0;
+      }
+    };
+
+    const closeGallery = () => {
+      gallery.classList.remove('open');
       document.body.style.overflow = '';
     };
 
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    craftItems.forEach((item, i) => {
+      item.addEventListener('click', () => openGallery(i));
+    });
+
+    closeBtn.addEventListener('click', closeGallery);
+
+    // Close when tapping anywhere that isn't a craft image
+    gallery.addEventListener('click', e => {
+      if (!(e.target instanceof Element)) return;
+      if (e.target.closest('.gallery__img')) return; // clicked on an image — keep open
+      closeGallery();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && gallery.classList.contains('open')) closeGallery();
+    });
   }
 
 });
